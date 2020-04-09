@@ -6,3 +6,15 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 
 一个用来熟悉 git 操作的仓库。
+
+## 生成 Change Log
+
+conventionalChangelog 这一步有两种选择
+
+```bash
+# 不会覆盖以前的 Change log，只会在 CHANGELOG.md 的头部加上自从上次发布以来的变动
+$ conventional-changelog -p angular -i CHANGELOG.md -s -p
+
+# 生成所有发布的 Change log
+$ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+```
