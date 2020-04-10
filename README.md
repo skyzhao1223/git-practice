@@ -9,15 +9,103 @@
 
 ## 常用命令
 
-### 新建工作区
+> git --help 中罗列的常用命令
 
-### 处理当前更改
+- 新建工作区
 
-### 检查历史和状态
+- 处理当前更改
 
-### 增加、标记或微调提交历史
+- 检查历史和状态
 
-### 合作
+- 增加、标记或微调提交历史
+
+- 合作
+
+## 提交规范
+
+### 1. 内容检查 - [commitlint](https://commitlint.js.org/#/guides-local-setup?id=install-commitlint)
+
+安装 commitlint 和 config-conventional 通用规则配置
+
+```bash
+npm install --save-dev @commitlint/{cli,config-conventional}
+```
+
+配置规则
+
+```json
+// package.json
+{
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+}
+```
+
+### 2. 自动检查 - [husky](https://github.com/typicode/husky)
+
+> 与 husky 功能相近的还有 ghooks 和 pre-commit。
+
+安装 husky
+
+```bash
+npm install --save-dev husky
+```
+
+将 commitlint 配置到 commi-msg 钩子上
+
+```json
+// package.json
+{
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
+```
+
+### 3. 格式化提交 - [commitizen](https://github.com/commitizen/cz-cli)
+
+安装
+
+```bash
+# 安装 commitizen
+npm install commitizen -g
+
+# 使用 cz-conventional-changelog 初始化项目
+commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+添加执行脚本和配置项
+
+```json
+// package.json
+{
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
+```
+
+使用脚本进行提交
+
+```bash
+npm run commit
+```
+
+## 多人协作
+
+- 分支保护
+
+- Webhook
 
 ## 生成 Change Log
 
